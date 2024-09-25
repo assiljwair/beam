@@ -1,0 +1,21 @@
+apply plugin: 'org.apache.beam.module'
+apply plugin: 'application'
+mainClassName = "org.apache.beam.sdk.expansion.service.ExpansionService"
+
+applyJavaNature(
+  automaticModuleName: 'org.apache.beam.sdk.io.expansion.service',
+  exportJavadoc: false,
+  validateShadowJar: false,
+  shadowClosure: {},
+)
+
+description = "Apache Beam :: SDKs :: Java :: IO :: Solace :: Expansion Service"
+  ext.summary = "Expansion service serving Solace IO"
+
+dependencies {
+  implementation project(":sdks:java:expansion-service")
+  permitUnusedDeclared project(":sdks:java:expansion-service")
+  implementation project(":sdks:java:io:solace")
+  permitUnusedDeclared project(":sdks:java:io:solace")
+  runtimeOnly library.java.slf4j_jdk14
+}
